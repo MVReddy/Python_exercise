@@ -1,14 +1,4 @@
-class CacheManager(dict):
-    def __init__(self, namespace, cache, app_name):
-        self.namespace = namespace
-        self.cache = cache
-        self.app_name = app_name
-
-    def append(self, tup):
-        if isinstance(tup, tuple) and len(tup) == 4:
-            return self.__dict__.append(self, tup)
-        raise ValueError('CacheKey only takes objects of type: tuple, with (func, ignore_args, args, kwargs)')
-    
+class Mapping(dict):
     def __setitem__(self, key, item): 
         self.__dict__[key] = item
 
@@ -64,7 +54,7 @@ class CacheManager(dict):
         return unicode(repr(self.__dict__))
 
 
-o = CacheManager()
+o = Mapping()
 o.foo = "bar"
 o['lumberjack'] = 'foo'
 o.update({'a': 'b'}, c=44)
